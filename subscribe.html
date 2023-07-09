@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Book Summary Subscription</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      background-color: #f2f2f2;
+    }
+
+    .container {
+      max-width: 400px;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      color: #333;
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 10px;
+      font-weight: bold;
+    }
+
+    input[type="text"],
+    input[type="tel"],
+    select {
+      width: 100%;
+      max-width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+      font-size: 16px;
+      box-sizing: border-box;
+    }
+
+    input[type="submit"] {
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px 15px;
+      border: none;
+      cursor: pointer;
+      font-size: 16px;
+      width: 100%;
+      margin-top: 10px;
+    }
+
+    input[type="submit"]:hover {
+      background-color: #45a049;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    @media (max-width: 480px) {
+      .container {
+        max-width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Book Summary Subscription</h1>
+
+    <form action="subscribe.php" method="post">
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name" required>
+
+      <label for="phone">WhatsApp Phone Number:</label>
+      <input type="tel" id="phone" name="phone" required>
+
+      <label for="subscription">Subscription Type:</label>
+      <select id="subscription" name="subscription" onchange="handleSubscriptionChange()">
+        <option value="genre">Genre-based</option>
+        <option value="author">Author-based</option>
+        <option value="specific">Specific Book</option>
+      </select>
+
+      <div id="genreContainer" class="hidden">
+        <label for="genre">Genre Name:</label>
+        <input type="text" id="genre" name="genre">
+      </div>
+
+      <div id="authorContainer" class="hidden">
+        <label for="author">Author Name:</label>
+        <input type="text" id="author" name="author">
+      </div>
+
+      <div id="bookTitleContainer" class="hidden">
+        <label for="book">Book Title:</label>
+        <input type="text" id="book" name="book">
+      </div>
+
+      <input type="submit" value="Subscribe">
+    </form>
+  </div>
+
+  <script>
+    function handleSubscriptionChange() {
+      var subscriptionSelect = document.getElementById("subscription");
+      var genreContainer = document.getElementById("genreContainer");
+      var authorContainer = document.getElementById("authorContainer");
+      var bookTitleContainer = document.getElementById("bookTitleContainer");
+
+      genreContainer.classList.add("hidden");
+      authorContainer.classList.add("hidden");
+      bookTitleContainer.classList.add("hidden");
+
+      if (subscriptionSelect.value === "genre") {
+        genreContainer.classList.remove("hidden");
+      } else if (subscriptionSelect.value === "author") {
+        authorContainer.classList.remove("hidden");
+      } else if (subscriptionSelect.value === "specific") {
+        bookTitleContainer.classList.remove("hidden");
+      }
+    }
+  </script>
+</body>
+</html>
